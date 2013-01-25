@@ -46,7 +46,7 @@
                 </executions>
 
                 <configuration>
-                    <continueOnError>true</continueOnError>
+                    <continueOnError>false</continueOnError>
                     <restrictions>
                         <!-- Restrict all access from com.ya* (except from com.yamanyar.test.MyTestDef) to  java.util.regex.*-->
                         <restriction>com.ya*,!com.yamanyar.test.MyTestDef -> java.util.regex.*</restriction>

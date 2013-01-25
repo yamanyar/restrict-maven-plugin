@@ -46,11 +46,6 @@ public class RestrictLogger extends SystemStreamLog {
         }
     }
 
-    public void debug(CharSequence content) {
-        super.debug(content);
-        write(content);
-    }
-
     public void close() {
         try {
             if (this.bw != null) this.bw.close();

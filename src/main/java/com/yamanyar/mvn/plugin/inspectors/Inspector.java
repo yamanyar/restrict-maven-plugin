@@ -28,7 +28,7 @@ import java.util.jar.JarFile;
 
 public class Inspector {
 
-    final private static String errorMessage = "Restricted access from: %s to: %s due to rule [%d-%d]";
+    final private static String errorMessage = "Restricted access from:(%s) %s to: %s due to rule [%d-%d]";
     private final Log log;
     private final Map<WildcardMatcher, Set<WildcardMatcher>> restrictionsMap;
     private int count = 0;
@@ -48,7 +48,7 @@ public class Inspector {
             if (entryName.endsWith(".class")) {
                 try {
                     entryStream = jarFile.getInputStream(jarEntry);
-                    inspectClass(entryStream);
+                    inspectClass(entryStream,jarFile.getName());
 
                 } finally {
                     if (entryStream != null) entryStream.close();
@@ -100,7 +100,7 @@ public class Inspector {
         }
     }
 
-    protected void inspectClass(InputStream entryStream) throws IOException {
+    protected void inspectClass(InputStream entryStream,String path) throws IOException {
         ClassPool classPool = new ClassPool();
         CtClass ctClz = classPool.makeClass(entryStream);
 
@@ -117,7 +117,7 @@ public class Inspector {
                     for (WildcardMatcher restrictedTarget : restrictedTargets) {
                         if (restrictedTarget.match((String) targetReference)) {
                             count++;
-                            log.error(String.format(errorMessage, ctClz.getName(), targetReference, from.getRuleNo(), restrictedTarget.getRuleNo()));
+                            log.error(String.format(errorMessage,path, ctClz.getName(), targetReference, from.getRuleNo(), restrictedTarget.getRuleNo()));
                         }
                     }
                 }
@@ -158,7 +158,7 @@ public class Inspector {
         InputStream is = null;
         try {
             is = new FileInputStream(classFile);
-            inspectClass(is);
+            inspectClass(is,classFile.getAbsolutePath());
         } finally {
             if (is != null) is.close();
         }
