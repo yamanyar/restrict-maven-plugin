@@ -15,8 +15,7 @@
 
     <name>restrict-maven-plugin Maven Plugin</name>
 
-    <!-- TODO WEB-SITE IS NOT READY YET -->
-    <url>http://www.yamanyar.com/maven/restrict</url>
+    <url>https://github.com/yamanyar/restrict-maven-plugin/wiki/About-restrict-maven-plugin</url>
 
 
     <description>The maven main core project description</description>
