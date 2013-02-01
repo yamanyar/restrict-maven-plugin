@@ -20,11 +20,11 @@ public class RestrictionConfigurationFactoryTest {
     @Test
     public void testProduceConfiguration() throws Exception {
 
-        String[] testArray = {"org.*,com.*,!com.yamanyar.* -> java.lang.Thread",
-                "com.yamanyar.*,org.yamanyar.* -> java.awt.color.*,java.beans.AppletInitializer",
-                "com.yamanyar.* -> java.awt.color.Red",
-                "fromNone.* -> *,!com.yamanyar.*",
-                "* -> toNone",
+        String[] testArray = {"org.*,com.*,!com.yamanyar.* to java.lang.Thread",
+                "com.yamanyar.*,org.yamanyar.* to java.awt.color.*,java.beans.AppletInitializer",
+                "com.yamanyar.* to java.awt.color.Red",
+                "fromNone.* to *,!com.yamanyar.*",
+                "* to toNone",
         };
         Log mockLog = EasyMock.createMock(Log.class);
         RCTestHelper.logger = mockLog;

@@ -23,11 +23,11 @@ public class RestrictionConfigurationFactory {
      * <p/>
      * For example:
      * <p/>
-     * "org.*,com.* -> java.lang.Thread"
+     * "org.*,com.* to java.lang.Thread"
      * <p/>
      * In map view:
-     * [key] org.*  -> [value] java.lang.Thread
-     * [key] com.*  -> [value] java.lang.Thread
+     * [key] org.*  to [value] java.lang.Thread
+     * [key] com.*  to [value] java.lang.Thread
      *
      * @param restrictions
      * @param log
@@ -38,12 +38,13 @@ public class RestrictionConfigurationFactory {
         restrictionsMap = new HashMap<WildcardMatcher, Set<WildcardMatcher>>();
 
         for (String restriction : restrictions) {
-            int i = restriction.indexOf("->");
+            String token = " to ";
+            int i = restriction.indexOf(token);
             if (i < 0 || i + 2 > restriction.length())
                 throw new IllegalArgumentException("Please check restriction configuration:" + restriction);
 
             String fromPart = restriction.substring(0, i);
-            String toPart = restriction.substring(i + 2);
+            String toPart = restriction.substring(i + token.length());
             List<WildcardMatcher> fromExceptions = new ArrayList<WildcardMatcher>();
             List<WildcardMatcher> toExceptions = new ArrayList<WildcardMatcher>();
 

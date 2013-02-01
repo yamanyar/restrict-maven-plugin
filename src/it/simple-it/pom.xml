@@ -34,7 +34,7 @@
 
                 <groupId>com.yamanyar</groupId>
                 <artifactId>restrict-maven-plugin</artifactId>
-                <version>0.1-SNAPSHOT</version>
+                <version>0.3-SNAPSHOT</version>
 
                 <executions>
                     <execution>
@@ -49,15 +49,15 @@
                     <continueOnError>false</continueOnError>
                     <restrictions>
                         <!-- Restrict all access from com.ya* (except from com.yamanyar.test.MyTestDef) to  java.util.regex.*-->
-                        <restriction>com.ya*,!com.yamanyar.test.MyTestDef -> java.util.regex.*</restriction>
+                        <restriction>com.ya*,!com.yamanyar.test.MyTestDef to java.util.regex.*</restriction>
                         <!-- Restrict all access from * (except from *MyTestDef and com.yamanyar.none.*) to  sun.net.www.http.HttpClient -->
-                        <restriction>*,!*MyTestDef,!com.yamanyar.none.* -> sun.net.www.http.HttpClient</restriction>
+                        <restriction>*,!*MyTestDef,!com.yamanyar.none.* to sun.net.www.http.HttpClient</restriction>
                         <!-- Restrict all access from org.apache.commons.io.* to java.nio.* (except to java.nio.Buffer) -->
-                        <restriction>org.apache.commons.io.* -> java.nio.*,!java.nio.Buffer</restriction>
+                        <restriction>org.apache.commons.io.* to java.nio.*,!java.nio.Buffer</restriction>
                         <!-- This is not tested in integration test; just for sample usage
                         Restrict all access from org.*,com.* (except from net.*,gov.*)
                                 to co.uk.*,com.tr.* (except to eu.*,li.*)-->
-                        <restriction>org.*,com.*,!net.*,!gov.* -> co.uk.*,com.tr.*,!eu.*,!li.*</restriction>
+                        <restriction>org.*,com.*,!net.*,!gov.* to co.uk.*,com.tr.*,!eu.*,!li.*</restriction>
                     </restrictions>
                 </configuration>
 
