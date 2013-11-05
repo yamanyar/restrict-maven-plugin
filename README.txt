@@ -8,6 +8,8 @@ You can use wildcard both in from and to targets with exception cases.
 
 See release notes at [here](https://github.com/yamanyar/restrict-maven-plugin/wiki/Release-Notes).
 
+See restriction samples at [here](https://github.com/yamanyar/restrict-maven-plugin/wiki/Restriction-Samples).
+
 Is there feature or a bug you noticed? Please inform [here](https://github.com/yamanyar/restrict-maven-plugin/issues).
 
 Following is a sample usage from integration test, please note that restrictions below are meaningless; just for testing. (Artifact is deployed to maven central repository; so you do not need to download and install it to your local.)
@@ -33,6 +35,7 @@ Following is a sample usage from integration test, please note that restrictions
                     <continueOnError>false</continueOnError>
                     <restrictions>
                         <!-- Restrict all access from com.ya* (except from com.yamanyar.test.MyTestDef) to  java.util.regex.* and to java.io.PrintStre*.pri*ln() -->
+                        <!-- To mark a restriction to method you must finish with "()". Overloading is not supported; so all the matching methods will be restricted; inform me if you ever need.-->
                         <restriction>com.ya*,!com.yamanyar.test.MyTestDef to java.util.regex.*,java.io.PrintStre*.pri*ln()</restriction>
                         <!-- Restrict all access from * (except from *MyTestDef and com.yamanyar.none.*) to  sun.net.www.http.HttpClient -->
                         <restriction>*,!*MyTestDef,!com.yamanyar.none.* to sun.net.www.http.HttpClient</restriction>
