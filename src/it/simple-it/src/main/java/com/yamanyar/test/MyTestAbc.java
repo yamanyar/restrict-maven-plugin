@@ -14,5 +14,6 @@ public class MyTestAbc {
 
     private void testMe(String test) {
         java.util.regex.Matcher.quoteReplacement("hello");
+        System.out.println("Hello!");
     }
 }

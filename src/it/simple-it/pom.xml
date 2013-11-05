@@ -34,7 +34,7 @@
 
                 <groupId>com.yamanyar</groupId>
                 <artifactId>restrict-maven-plugin</artifactId>
-                <version>0.3-SNAPSHOT</version>
+                <version>0.4-SNAPSHOT</version>
 
                 <executions>
                     <execution>
@@ -49,7 +49,7 @@
                     <continueOnError>false</continueOnError>
                     <restrictions>
                         <!-- Restrict all access from com.ya* (except from com.yamanyar.test.MyTestDef) to  java.util.regex.*-->
-                        <restriction>com.ya*,!com.yamanyar.test.MyTestDef to java.util.regex.*</restriction>
+                        <restriction>com.ya*,!com.yamanyar.test.MyTestDef to java.util.regex.*,java.io.PrintStream.println()</restriction>
                         <!-- Restrict all access from * (except from *MyTestDef and com.yamanyar.none.*) to  sun.net.www.http.HttpClient -->
                         <restriction>*,!*MyTestDef,!com.yamanyar.none.* to sun.net.www.http.HttpClient</restriction>
                         <!-- Restrict all access from org.apache.commons.io.* to java.nio.* (except to java.nio.Buffer) -->

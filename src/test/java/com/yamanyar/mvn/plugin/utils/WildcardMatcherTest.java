@@ -32,5 +32,14 @@ public class WildcardMatcherTest {
         wildcardMatcher = new WildcardMatcher("*.yamanyar*", log);
         assertTrue(wildcardMatcher.match("com.yamanyar.esb.Main"));
 
+
+        wildcardMatcher = new WildcardMatcher("*.yamanyar.Abc.Test()", log);
+        assertTrue(wildcardMatcher.match("com.yamanyar.Abc"));
+        assertFalse(wildcardMatcher.match("com.yamanyar.Abcd"));
+
+        wildcardMatcher = new WildcardMatcher("*.yamanyar.Ab*.Test()", log);
+        assertTrue(wildcardMatcher.match("com.yamanyar.Abc"));
+        assertTrue(wildcardMatcher.match("com.yamanyar.Abcd"));
+
     }
 }

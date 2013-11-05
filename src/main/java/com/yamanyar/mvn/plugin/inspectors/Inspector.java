@@ -5,6 +5,8 @@ import com.yamanyar.mvn.plugin.utils.Extractor;
 import com.yamanyar.mvn.plugin.utils.WildcardMatcher;
 import javassist.ClassPool;
 import javassist.CtClass;
+import javassist.CtMethod;
+import javassist.bytecode.*;
 import org.apache.commons.io.FileUtils;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.logging.Log;
@@ -13,12 +15,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.regex.Pattern;
 
 /**
  * Inspects the class files, jar files and war files inside given ear resource
@@ -48,7 +48,7 @@ public class Inspector {
             if (entryName.endsWith(".class")) {
                 try {
                     entryStream = jarFile.getInputStream(jarEntry);
-                    inspectClass(entryStream,jarFile.getName());
+                    inspectClass(entryStream, jarFile.getName());
 
                 } finally {
                     if (entryStream != null) entryStream.close();
@@ -100,9 +100,9 @@ public class Inspector {
         }
     }
 
-    protected void inspectClass(InputStream entryStream,String path) throws IOException {
+    protected void inspectClass(InputStream entryStream, String path) throws IOException {
         ClassPool classPool = new ClassPool();
-        CtClass ctClz = classPool.makeClass(entryStream);
+        CtClass currentClass = classPool.makeClass(entryStream);
 
         Set<WildcardMatcher> fromList = restrictionsMap.keySet();
 
@@ -110,17 +110,72 @@ public class Inspector {
         //TODO Optimize this code block
 
         for (WildcardMatcher from : fromList) {
-            if (from.match(ctClz.getName())) {
-                Collection refClasses = ctClz.getRefClasses();
-                for (Object targetReference : refClasses) {
-                    Set<WildcardMatcher> restrictedTargets = restrictionsMap.get(from);
-                    for (WildcardMatcher restrictedTarget : restrictedTargets) {
-                        if (restrictedTarget.match((String) targetReference)) {
-                            count++;
-                            log.error(String.format(errorMessage,path, ctClz.getName(), targetReference, from.getRuleNo(), restrictedTarget.getRuleNo()));
+            //check if current class matches one of the rule's from set
+            if (from.match(currentClass.getName())) {
+                Collection refClasses = currentClass.getRefClasses();
+                if (refClasses != null)
+                    for (Object targetReference : refClasses) {
+                        Set<WildcardMatcher> restrictedTargets = restrictionsMap.get(from);
+                        for (WildcardMatcher restrictedTarget : restrictedTargets) {
+
+                            //if target rule is a restriction of reference; log error and increase count
+                            if (!restrictedTarget.isMethod()) {
+                                if (restrictedTarget.match((String) targetReference)) {
+                                    count++;
+                                    log.error(String.format(errorMessage, path, currentClass.getName(), targetReference, from.getRuleNo(), restrictedTarget.getRuleNo()));
+                                }
+                            } else {
+                                //target is a restriction to a method;
+                                // first let's be sure that target class is matched. It means class containing the target method is referenced..
+                                if (restrictedTarget.match((String) targetReference)) {
+                                    //check method invokes
+                                    CtMethod[] declaredMethods = currentClass.getDeclaredMethods();
+                                    for (CtMethod declaredMethod : declaredMethods) {
+
+                                        MethodInfo minfo = declaredMethod.getMethodInfo();
+                                        minfo.getCodeAttribute();
+                                        CodeAttribute ca = minfo.getCodeAttribute();
+                                        for (CodeIterator ci = ca.iterator(); ci.hasNext(); ) {
+                                            int index = 0;
+                                            try {
+                                                index = ci.next();
+                                            } catch (BadBytecode badBytecode) {
+                                                throw new IOException(badBytecode);
+                                            }
+                                            int op = ci.byteAt(index);
+
+                                            String desc = null;
+                                            if (index < ci.getCodeLength()-1) {
+                                                int theIndex = ci.u16bitAt(index + 1);
+                                                ConstPool constPool = ca.getConstPool();
+                                                switch (op) {
+                                                    case Opcode.INVOKEVIRTUAL:
+                                                    case Opcode.INVOKESPECIAL:
+                                                    case Opcode.INVOKESTATIC:
+                                                        desc = constPool.getMethodrefClassName(theIndex) + "." + constPool.getMethodrefName(theIndex) + "()";
+                                                        break;
+                                                    case Opcode.INVOKEINTERFACE:
+                                                        desc = constPool.getInterfaceMethodrefClassName(theIndex) + "." + constPool.getInterfaceMethodrefName(theIndex) + "()";
+
+                                                        break;
+                                                }
+                                                if (desc != null) {
+                                                    log.debug("Checking " + restrictedTarget.toString() + " against " + desc);
+                                                    if (restrictedTarget.matchMethod(desc)) {
+                                                        log.debug("Method signature matched: " + restrictedTarget.toString() + " against " + desc);
+                                                        count++;
+                                                        log.error(String.format(errorMessage, path, currentClass.getName(), desc, from.getRuleNo(), restrictedTarget.getRuleNo()));
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+
                         }
                     }
-                }
             }
         }
 
@@ -158,7 +213,7 @@ public class Inspector {
         InputStream is = null;
         try {
             is = new FileInputStream(classFile);
-            inspectClass(is,classFile.getAbsolutePath());
+            inspectClass(is, classFile.getAbsolutePath());
         } finally {
             if (is != null) is.close();
         }
@@ -174,9 +229,9 @@ public class Inspector {
     public void breakIfError(boolean continueOnError) throws RestrictedAccessException {
         if (count > 0) {
             log.error("Build is broken due to " + count + " restriction policies!");
-            if (continueOnError){
+            if (continueOnError) {
                 log.error("Build is not broken since continueOnError is set to true!");
-            }else{
+            } else {
                 throw new RestrictedAccessException(count);
             }
         } else log.info("No restricted access is found");

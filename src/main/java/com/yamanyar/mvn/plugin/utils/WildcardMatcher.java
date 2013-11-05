@@ -2,7 +2,6 @@ package com.yamanyar.mvn.plugin.utils;
 
 import org.apache.maven.plugin.logging.Log;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -18,6 +17,7 @@ public class WildcardMatcher {
     private int ruleNo = 0;
     private static int ruleCounter = 0;
     private final Pattern pattern;
+    private final Pattern methodPattern;
     private final String wildcardString;
     private final Log log;
 
@@ -25,28 +25,48 @@ public class WildcardMatcher {
         this.log = log;
         ruleNo = ++ruleCounter;
         if (wildcardString == null) throw new IllegalArgumentException("How can I match with null?");
-        this.pattern = Pattern.compile(wildcardToRegex(wildcardString));
         this.wildcardString = wildcardString;
+
+        if (isMethod()) {
+            this.pattern = Pattern.compile(wildcardToRegex(wildcardString.substring(0, wildcardString.lastIndexOf('.'))));
+            this.methodPattern = Pattern.compile(wildcardToRegex(wildcardString));
+        } else {
+            this.pattern = Pattern.compile(wildcardToRegex(wildcardString));
+            this.methodPattern = null;
+        }
     }
 
 
+    public boolean isMethod() {
+        return wildcardString.endsWith("()");
+    }
+
     private List<WildcardMatcher> exceptions;
 
+
+    public boolean matchMethod(String testString) {
+        return  matchAgainstPattern(testString,methodPattern);
+    }
+
     public boolean match(String testString) {
-        boolean matchesPattern = pattern.matcher(testString).matches();
+        return matchAgainstPattern(testString, pattern);
+
+    }
+
+    private boolean matchAgainstPattern(String testString, Pattern patternToBeMatched) {
+        boolean matchesPattern = patternToBeMatched.matcher(testString).matches();
 
         //is it included in exceptions:
         if (matchesPattern && exceptions != null) {
             for (WildcardMatcher exception : exceptions) {
                 if (exception.match(testString)) {
-                    log.debug(String.format("An exception to a restriction (%s of rule %d) matched %s.",wildcardString,ruleNo,testString));
+                    log.debug(String.format("An exception to a restriction (%s of rule %d) matched %s.", wildcardString, ruleNo, testString));
                     return false;
                 }
             }
         }
 
         return matchesPattern;
-
     }
 
     /**
