@@ -106,11 +106,8 @@ public class Inspector {
 
         Set<WildcardMatcher> fromList = restrictionsMap.keySet();
 
-
-        //TODO Optimize this code block
-
         for (WildcardMatcher from : fromList) {
-            //check if current class matches one of the rule's from set
+            //check if current class matches one of the rule's from set. We only want to inspect classes that are in the "FROM" part of a rule.
             if (from.match(currentClass.getName())) {
                 Collection refClasses = currentClass.getRefClasses();
                 if (refClasses != null)
@@ -118,15 +115,17 @@ public class Inspector {
                         Set<WildcardMatcher> restrictedTargets = restrictionsMap.get(from);
                         for (WildcardMatcher restrictedTarget : restrictedTargets) {
 
-                            //if target rule is a restriction of reference; log error and increase count
+                            //Let's check if target reference is restricted.
+
+                            //If target is a reference restriction; it's simple to check::
                             if (!restrictedTarget.isMethod()) {
                                 if (restrictedTarget.match((String) targetReference)) {
                                     count++;
                                     log.error(String.format(errorMessage, path, currentClass.getName(), targetReference, from.getRuleNo(), restrictedTarget.getRuleNo()));
                                 }
                             } else {
-                                //target is a restriction to a method;
-                                // first let's be sure that target class is matched. It means class containing the target method is referenced..
+                                //If target is a restriction to a method; first let's be sure that target class is matched. It means class containing the target method is referenced..
+                                //With this check we will not dive into method's body for invoke checks
                                 if (restrictedTarget.match((String) targetReference)) {
                                     //check method invokes
                                     CtMethod[] declaredMethods = currentClass.getDeclaredMethods();
@@ -145,7 +144,7 @@ public class Inspector {
                                             int op = ci.byteAt(index);
 
                                             String desc = null;
-                                            if (index < ci.getCodeLength()-1) {
+                                            if (index < ci.getCodeLength() - 1) {
                                                 int theIndex = ci.u16bitAt(index + 1);
                                                 ConstPool constPool = ca.getConstPool();
                                                 switch (op) {
@@ -159,6 +158,8 @@ public class Inspector {
 
                                                         break;
                                                 }
+
+                                                //if we found an invocation; let's check pattern matching
                                                 if (desc != null) {
                                                     log.debug("Checking " + restrictedTarget.toString() + " against " + desc);
                                                     if (restrictedTarget.matchMethod(desc)) {

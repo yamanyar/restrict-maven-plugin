@@ -35,11 +35,21 @@ public class WildcardMatcherTest {
 
         wildcardMatcher = new WildcardMatcher("*.yamanyar.Abc.Test()", log);
         assertTrue(wildcardMatcher.match("com.yamanyar.Abc"));
+        assertTrue(wildcardMatcher.matchMethod("com.yamanyar.Abc.Test()"));
         assertFalse(wildcardMatcher.match("com.yamanyar.Abcd"));
 
         wildcardMatcher = new WildcardMatcher("*.yamanyar.Ab*.Test()", log);
         assertTrue(wildcardMatcher.match("com.yamanyar.Abc"));
         assertTrue(wildcardMatcher.match("com.yamanyar.Abcd"));
+        assertTrue(wildcardMatcher.matchMethod("com.yamanyar.Abcd.Test()"));
+        assertFalse(wildcardMatcher.matchMethod("com.yamanyar.Abcd.UTest()"));
+
+        wildcardMatcher = new WildcardMatcher("*.yamanyar.Ab*.Te*t()", log);
+        assertTrue(wildcardMatcher.match("com.yamanyar.Abc"));
+        assertTrue(wildcardMatcher.match("com.yamanyar.Abcd"));
+        assertTrue(wildcardMatcher.matchMethod("com.yamanyar.Abcd.Test()"));
+        assertFalse(wildcardMatcher.matchMethod("com.yamanyar.Abcd.UTest()"));
+        assertTrue(wildcardMatcher.matchMethod("com.yamanyar.Abcd.TeUzzzZt()"));
 
     }
 }
