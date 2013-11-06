@@ -10,7 +10,7 @@ See release notes at [here](https://github.com/yamanyar/restrict-maven-plugin/wi
 
 Please See restriction samples at [here](https://github.com/yamanyar/restrict-maven-plugin/wiki/Restriction-Samples).
 
-Current version is 0.5.
+Current version is 0.6.
 
 Is there feature or a bug you noticed? Please inform [here](https://github.com/yamanyar/restrict-maven-plugin/issues).
 
@@ -22,7 +22,7 @@ Following is a sample usage from integration test, please note that restrictions
 
                 <groupId>com.yamanyar</groupId>
                 <artifactId>restrict-maven-plugin</artifactId>
-                <version>0.5</version>
+                <version>0.6</version>
 
                 <executions>
                     <execution>
