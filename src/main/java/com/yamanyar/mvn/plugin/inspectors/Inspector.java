@@ -144,7 +144,8 @@ public class Inspector {
                                             int op = ci.byteAt(index);
 
                                             String desc = null;
-                                            if (index < ci.getCodeLength() - 1) {
+                                            //TODO Check why invoke without method name occurs..
+                                            if (index+1 < ci.getCodeLength() - 1) {
                                                 int theIndex = ci.u16bitAt(index + 1);
                                                 ConstPool constPool = ca.getConstPool();
                                                 switch (op) {

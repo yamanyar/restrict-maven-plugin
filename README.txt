@@ -34,6 +34,7 @@ Following is a sample usage from integration test, please note that restrictions
                 </executions>
 
                 <configuration>
+                    <!-- You can break maven build is restrictions found; or let build continue and just print logs. -->
                     <continueOnError>false</continueOnError>
                     <restrictions>
                         <!-- Restrict all access from com.ya* (except from com.yamanyar.test.MyTestDef) to  java.util.regex.* and to java.io.PrintStre*.pri*ln() -->

@@ -87,8 +87,13 @@ public class RestrictionConfigurationFactory {
             WildcardMatcher from = entry.getKey();
             for (WildcardMatcher to : entry.getValue()) {
 
-                String message = String.format("[%d-%d] Access from %s to %s will be not allowed.",
-                        from.getRuleNo(), to.getRuleNo(), from, to);
+                String exceptFrom = from.getExceptions();
+                String exceptTo = from.getExceptions();
+
+                exceptFrom = exceptFrom == null ? "" : " (except " + exceptFrom + ")";
+                exceptTo = exceptTo == null ? "" : " (except " + exceptTo + ")";
+
+                String message = String.format("[%d-%d] Access from %s%s to %s%s will be not allowed.", from.getRuleNo(), to.getRuleNo(), from, exceptFrom, to, exceptTo);
                 log.info(message);
             }
         }

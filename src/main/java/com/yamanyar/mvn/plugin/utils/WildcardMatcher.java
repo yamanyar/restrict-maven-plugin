@@ -2,6 +2,7 @@ package com.yamanyar.mvn.plugin.utils;
 
 import org.apache.maven.plugin.logging.Log;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -138,6 +139,20 @@ public class WildcardMatcher {
 
     public void setExceptions(List<WildcardMatcher> exceptions) {
         this.exceptions = exceptions;
+    }
+
+    public String getExceptions() {
+        if (this.exceptions == null || exceptions.size() == 0) return null;
+        StringBuilder sb = new StringBuilder();
+        Iterator<WildcardMatcher> iterator = exceptions.iterator();
+        while (iterator.hasNext()) {
+            WildcardMatcher next =  iterator.next();
+            sb.append(next.wildcardString);
+            if (iterator.hasNext()) sb.append(",");
+
+        }
+
+        return sb.toString();
     }
 }
 
