@@ -57,8 +57,10 @@ public class RestrictMojo
             throws MojoExecutionException {
         File report = new File(buildDirectory, "restrict-maven-plugin.txt");
         RestrictLogger restrictLogger = new RestrictLogger(report, getLog());
+        long x = System.currentTimeMillis();
         try {
 
+            restrictLogger.info("restrict-maven-plugin started!");
 
 
 
@@ -88,6 +90,7 @@ public class RestrictMojo
 
             inspector.breakIfError(continueOnError);
         } finally {
+            restrictLogger.info("restrict-maven-plugin completed in approx. " + Math.ceil((System.currentTimeMillis() - x) / 1000.0) + " seconds.");
             restrictLogger.close();
         }
 

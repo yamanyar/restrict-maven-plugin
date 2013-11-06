@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cbc45888-5a2c-4f64-b431-dff444e7b6c2" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_18_1_GA.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.txt" afterPath="$PROJECT_DIR$/README.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/yamanyar/mvn/plugin/RestrictMojo.java" afterPath="$PROJECT_DIR$/src/main/java/com/yamanyar/mvn/plugin/RestrictMojo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/it/simple-it/pom.xml" afterPath="$PROJECT_DIR$/src/it/simple-it/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="restrict-maven-plugin.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="cbc45888-5a2c-4f64-b431-dff444e7b6c2" time="1383664946329" ignored="false" />
-    <file path="/README.txt" changelist="cbc45888-5a2c-4f64-b431-dff444e7b6c2" time="1383658263869" ignored="false" />
+    <file path="/README.txt" changelist="cbc45888-5a2c-4f64-b431-dff444e7b6c2" time="1383724305933" ignored="false" />
     <file path="/Inspector.java" changelist="cbc45888-5a2c-4f64-b431-dff444e7b6c2" time="1383655310115" ignored="false" />
     <file path="/pom.xml" changelist="cbc45888-5a2c-4f64-b431-dff444e7b6c2" time="1383723376002" ignored="false" />
     <file path="/WildcardMatcher.java" changelist="cbc45888-5a2c-4f64-b431-dff444e7b6c2" time="1383654214681" ignored="false" />
@@ -19,6 +20,7 @@
     <file path="$MAVEN_REPOSITORY$/com/yamanyar/restrict-maven-plugin/0.4-SNAPSHOT/restrict-maven-plugin-0.4-SNAPSHOT.jar!/META-INF/maven/plugin.xml" changelist="cbc45888-5a2c-4f64-b431-dff444e7b6c2" time="1383656952355" ignored="false" />
     <file path="/a.dummy" changelist="cbc45888-5a2c-4f64-b431-dff444e7b6c2" time="1383655840847" ignored="false" />
     <file path="$USER_HOME$/.m2/settings.xml" changelist="cbc45888-5a2c-4f64-b431-dff444e7b6c2" time="1383666859132" ignored="false" />
+    <file path="/RestrictMojo.java" changelist="cbc45888-5a2c-4f64-b431-dff444e7b6c2" time="1383724586911" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,10 +81,64 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="21" selection-start="2635" selection-end="2635" vertical-scroll-proportion="0.588694">
+            <state line="11" column="37" selection-start="443" selection-end="464" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.txt" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="23" selection-start="674" selection-end="674" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Inspector.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/yamanyar/mvn/plugin/inspectors/Inspector.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="17" selection-start="1060" selection-end="1069" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RestrictMojo.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/yamanyar/mvn/plugin/RestrictMojo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="92" column="75" selection-start="3123" selection-end="3123" vertical-scroll-proportion="1.1302605">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RestrictLogger.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/yamanyar/mvn/plugin/RestrictLogger.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="13" selection-start="402" selection-end="402" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/it/simple-it/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="28" selection-start="1172" selection-end="1172" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RestrictionConfigurationFactory.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/yamanyar/mvn/plugin/RestrictionConfigurationFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="109" selection-start="910" selection-end="910" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -113,9 +169,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/yamanyar/mvn/plugin/utils/WildcardMatcher.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/yamanyar/mvn/plugin/utils/WildcardMatcherTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yamanyar/mvn/plugin/inspectors/Inspector.java" />
-        <option value="$PROJECT_DIR$/src/it/simple-it/pom.xml" />
-        <option value="$PROJECT_DIR$/README.txt" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/README.txt" />
+        <option value="$PROJECT_DIR$/src/it/simple-it/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/yamanyar/mvn/plugin/RestrictMojo.java" />
       </list>
     </option>
   </component>
@@ -440,7 +497,7 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
   </component>
-  <component name="RunManager" selected="JUnit.WildcardMatcherTest.testMatch">
+  <component name="RunManager" selected="Maven.MavenTest">
     <configuration default="false" name="WildcardMatcherTest.testMatch" type="JUnit" factoryName="JUnit" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -656,9 +713,10 @@
     <frame x="-1" y="25" width="1922" height="963" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32230392" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32230392" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3991228" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -667,18 +725,17 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32894737" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1430096" sideWeight="0.67105263" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1430096" sideWeight="0.67156863" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24759872" sideWeight="0.67769605" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32870865" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24759872" sideWeight="0.67156863" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32843137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32894737" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -751,16 +808,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/it/simple-it/src/main/java/com/yamanyar/test/MyTestAbc.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="23" selection-start="330" selection-end="330" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/javassist/javassist/3.18.1-GA/javassist-3.18.1-GA-sources.jar!/javassist/bytecode/AttributeInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="75" selection-start="2279" selection-end="2279" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/javassist/javassist/3.18.1-GA/javassist-3.18.1-GA-sources.jar!/javassist/bytecode/MethodInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="339" column="72" selection-start="10078" selection-end="10078" vertical-scroll-proportion="0.0">
@@ -811,34 +858,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yamanyar/mvn/plugin/RestrictMojo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="0" selection-start="2757" selection-end="2757" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yamanyar/mvn/plugin/inspectors/Inspector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="229" column="37" selection-start="10159" selection-end="10159" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/it/simple-it/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="37" selection-start="1173" selection-end="1181" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="49" selection-start="1128" selection-end="1149" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$MAVEN_REPOSITORY$/org/sonatype/oss/oss-parent/7/oss-parent-7.pom">
       <provider selected="true" editor-type-id="text-editor">
         <state line="43" column="37" selection-start="1930" selection-end="1930" vertical-scroll-proportion="0.6639839">
@@ -846,9 +865,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="23" selection-start="674" selection-end="674" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yamanyar/mvn/plugin/RestrictionConfigurationFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="109" selection-start="910" selection-end="910" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yamanyar/mvn/plugin/inspectors/Inspector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="17" selection-start="1060" selection-end="1069" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="21" selection-start="2635" selection-end="2635" vertical-scroll-proportion="0.588694">
+        <state line="11" column="37" selection-start="443" selection-end="464" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/simple-it/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="28" selection-start="1172" selection-end="1172" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yamanyar/mvn/plugin/RestrictLogger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="13" selection-start="402" selection-end="402" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yamanyar/mvn/plugin/RestrictMojo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="92" column="75" selection-start="3123" selection-end="3123" vertical-scroll-proportion="1.1302605">
           <folding />
         </state>
       </provider>

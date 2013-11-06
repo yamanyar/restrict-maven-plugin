@@ -8,7 +8,9 @@ You can use wildcard both in from and to targets with exception cases.
 
 See release notes at [here](https://github.com/yamanyar/restrict-maven-plugin/wiki/Release-Notes).
 
-See restriction samples at [here](https://github.com/yamanyar/restrict-maven-plugin/wiki/Restriction-Samples).
+Please See restriction samples at [here](https://github.com/yamanyar/restrict-maven-plugin/wiki/Restriction-Samples).
+
+Current version is 0.5.
 
 Is there feature or a bug you noticed? Please inform [here](https://github.com/yamanyar/restrict-maven-plugin/issues).
 
@@ -20,7 +22,7 @@ Following is a sample usage from integration test, please note that restrictions
 
                 <groupId>com.yamanyar</groupId>
                 <artifactId>restrict-maven-plugin</artifactId>
-                <version>0.4</version>
+                <version>0.5</version>
 
                 <executions>
                     <execution>
