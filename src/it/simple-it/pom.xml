@@ -34,7 +34,7 @@
 
                 <groupId>com.yamanyar</groupId>
                 <artifactId>restrict-maven-plugin</artifactId>
-                <version>0.6-SNAPSHOT</version>
+                <version>0.6</version>
 
                 <executions>
                     <execution>
@@ -46,6 +46,7 @@
                 </executions>
 
                 <configuration>
+                    <!-- If you set continueOnError to true; build will be not broken; only log will be printed-->
                     <continueOnError>false</continueOnError>
                     <restrictions>
                         <!-- Restrict all access from com.ya* (except from com.yamanyar.test.MyTestDef) to  java.util.regex.* and to java.io.PrintStre*.pri*ln() -->
