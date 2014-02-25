@@ -16,8 +16,10 @@ package com.yamanyar.mvn.plugin;
  * limitations under the License.
  */
 
-import com.yamanyar.mvn.plugin.inspectors.Inspector;
-import com.yamanyar.mvn.plugin.utils.WildcardMatcher;
+import java.io.File;
+import java.util.Map;
+import java.util.Set;
+
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -25,9 +27,8 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
-import java.io.File;
-import java.util.Map;
-import java.util.Set;
+import com.yamanyar.mvn.plugin.inspectors.Inspector;
+import com.yamanyar.mvn.plugin.utils.WildcardMatcher;
 
 /**
  * Main entry point for the plugin
@@ -55,6 +56,11 @@ public class RestrictMojo
 
     public void execute()
             throws MojoExecutionException {
+        if (!buildDirectory.exists()) {
+            getLog().warn("Directory " + buildDirectory + " does not exist, ignoring");
+            return;
+        }
+
         File report = new File(buildDirectory, "restrict-maven-plugin.txt");
         RestrictLogger restrictLogger = new RestrictLogger(report, getLog());
         long x = System.currentTimeMillis();
