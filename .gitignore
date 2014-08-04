@@ -1,4 +1,11 @@
-.idea/
+#maven
 target/
+
+#idea
+.idea/
 restrict-maven-plugin.iml
 
+#eclipse
+.classpath
+.project
+.settings/
