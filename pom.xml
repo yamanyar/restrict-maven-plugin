@@ -40,6 +40,16 @@
         </developer>
     </developers>
 
+    <contributors>
+        <contributor>
+            <name>Marvin Froeder</name>
+            <email>velo dot br at gmail dot com</email>
+            <roles>
+                <role>Java 8 support</role>
+            </roles>
+        </contributor>
+    </contributors>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -72,9 +82,9 @@
             <version>3.0.8</version>
         </dependency>
         <dependency>
-            <groupId>javassist</groupId>
+            <groupId>org.javassist</groupId>
             <artifactId>javassist</artifactId>
-            <version>3.3.GA</version>
+            <version>3.18.2-GA</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
