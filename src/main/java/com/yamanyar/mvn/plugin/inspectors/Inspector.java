@@ -134,7 +134,7 @@ public class Inspector {
                                         MethodInfo minfo = declaredMethod.getMethodInfo();
                                         minfo.getCodeAttribute();
                                         CodeAttribute ca = minfo.getCodeAttribute();
-                                        for (CodeIterator ci = ca.iterator(); ci.hasNext(); ) {
+                                        if(null!=ca) for (CodeIterator ci = ca.iterator(); ci.hasNext(); ) {
                                             int index = 0;
                                             try {
                                                 index = ci.next();
