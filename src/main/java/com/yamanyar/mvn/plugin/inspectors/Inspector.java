@@ -134,7 +134,7 @@ public class Inspector {
                                         MethodInfo minfo = declaredMethod.getMethodInfo();
                                         minfo.getCodeAttribute();
                                         CodeAttribute ca = minfo.getCodeAttribute();
-                                        for (CodeIterator ci = ca.iterator(); ci.hasNext(); ) {
+                                        if(null!=ca) for (CodeIterator ci = ca.iterator(); ci.hasNext(); ) {
                                             int index = 0;
                                             try {
                                                 index = ci.next();
@@ -152,8 +152,12 @@ public class Inspector {
                                                     case Opcode.INVOKEVIRTUAL:
                                                     case Opcode.INVOKESPECIAL:
                                                     case Opcode.INVOKESTATIC:
-                                                        desc = constPool.getMethodrefClassName(theIndex) + "." + constPool.getMethodrefName(theIndex) + "()";
-                                                        break;
+                                                        // As of JDK8, interfaces can have static methods! So if this is not a methodref,
+                                                        // try falling through to the INVOKEINTERFACE case, as it might just be an interfacemethodref
+                                                        if(constPool.getTag(theIndex) == ConstPool.CONST_Methodref) {
+                                                            desc = constPool.getMethodrefClassName(theIndex) + "." + constPool.getMethodrefName(theIndex) + "()";
+                                                            break;
+                                                        }
                                                     case Opcode.INVOKEINTERFACE:
                                                         desc = constPool.getInterfaceMethodrefClassName(theIndex) + "." + constPool.getInterfaceMethodrefName(theIndex) + "()";
 
