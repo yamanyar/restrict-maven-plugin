@@ -14,7 +14,8 @@ Current version is 0.7.
 
 With 0.8 Release now you can:
 1) Use "-Drestrict.skip=true" to skip this plugin
-2) Can sey <onlyInspectFolder>true</onlyInspectFolder> just to restrict build directory (dependencies are not checked)
+2) Can set <onlyInspectFolder>true</onlyInspectFolder> just to restrict build directory (dependencies are not checked)
+3) Cans set <printDebugs>false</printDebugs> not to print debugs.
 
 
 
