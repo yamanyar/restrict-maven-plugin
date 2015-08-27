@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 /**
  * A simple wildcard matching utility class.
- * <p/>
  * The code is mostly copied from: http://www.rgagnon.com/javadetails/java-0515.html
  *
  * @author Kaan Yamanyar
@@ -71,9 +70,12 @@ public class WildcardMatcher {
     }
 
     /**
-     * @param wildcard
-     * @return
-     * @author: http://www.rgagnon.com/javadetails/java-0515.html
+     *
+     * Implementation from: http://www.rgagnon.com/javadetails/java-0515.html
+     *
+     * @param wildcard String in wildcards
+     * @return regex expression as string
+     *
      */
     private String wildcardToRegex(String wildcard) {
         StringBuffer s = new StringBuffer(wildcard.length());
@@ -118,9 +120,8 @@ public class WildcardMatcher {
 
         WildcardMatcher that = (WildcardMatcher) o;
 
-        if (!wildcardString.equals(that.wildcardString)) return false;
+        return wildcardString.equals(that.wildcardString);
 
-        return true;
     }
 
     @Override

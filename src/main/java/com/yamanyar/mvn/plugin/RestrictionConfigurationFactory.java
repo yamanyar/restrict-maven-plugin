@@ -18,20 +18,16 @@ public class RestrictionConfigurationFactory {
 
     /**
      * Reads restriction configurations and put them inside a map.
-     * <p/>
      * Restriction is "from" is represented by keys, "targets" are represented by values.
-     * <p/>
      * For example:
-     * <p/>
      * "org.*,com.* to java.lang.Thread"
-     * <p/>
      * In map view:
      * [key] org.*  to [value] java.lang.Thread
      * [key] com.*  to [value] java.lang.Thread
      *
-     * @param restrictions
-     * @param log
-     * @return
+     * @param restrictions Map of Restrictions:  "from" is represented by keys, "targets" are represented by values.
+     * @param log logger
+     * @return Returns restriction configs
      */
     public static Map<WildcardMatcher, Set<WildcardMatcher>> produceConfiguration(String[] restrictions, Log log) {
         Map<WildcardMatcher, Set<WildcardMatcher>> restrictionsMap;
