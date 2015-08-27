@@ -27,6 +27,7 @@ public class RestrictionConfigurationFactory {
      *
      * @param restrictions Map of Restrictions:  "from" is represented by keys, "targets" are represented by values.
      * @param log logger
+     * @param printDebugs boolean value to inform consumers if they should print debugs or not
      * @return Returns restriction configs
      */
     public static Map<WildcardMatcher, Set<WildcardMatcher>> produceConfiguration(String[] restrictions, Log log, boolean  printDebugs) {
