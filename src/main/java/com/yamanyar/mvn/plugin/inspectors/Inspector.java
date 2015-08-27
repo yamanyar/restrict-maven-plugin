@@ -8,6 +8,10 @@ import javassist.CtClass;
 import javassist.CtMethod;
 import javassist.bytecode.*;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.FileFilterUtils;
+import org.apache.commons.io.filefilter.IOFileFilter;
+import org.apache.commons.io.filefilter.SuffixFileFilter;
+import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.logging.Log;
 
@@ -225,7 +229,12 @@ public class Inspector {
     }
 
     public void inspectFolder(File buildDirectory) throws IOException {
-        Collection<File> files = FileUtils.listFiles(buildDirectory, new String[]{"class"}, true);
+
+        SuffixFileFilter filter = new SuffixFileFilter( new String[]{".class"});
+        IOFileFilter decoratedFilter = FileFilterUtils.makeSVNAware(filter);
+
+        Collection<File> files = FileUtils.listFiles(buildDirectory, decoratedFilter, TrueFileFilter.INSTANCE);
+
         for (File file : files)
             inspectClassFile(file);
 
