@@ -54,8 +54,19 @@ public class RestrictMojo
     @Parameter(defaultValue = "${project.build.directory}")
     private File buildDirectory;
 
+
+    @Parameter( property = "restrict.skip", defaultValue = "false" )
+    private boolean skipThisMojo;
+
     public void execute()
             throws MojoExecutionException {
+
+        //If -Drestrict.skip=true
+        if (skipThisMojo) {
+            return;
+        }
+
+
         if (!buildDirectory.exists()) {
             getLog().warn("Directory " + buildDirectory + " does not exist, ignoring");
             return;
