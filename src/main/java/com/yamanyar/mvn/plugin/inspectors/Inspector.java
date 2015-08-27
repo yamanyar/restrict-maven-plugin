@@ -18,7 +18,7 @@ import java.io.InputStream;
 import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-import java.util.regex.Pattern;
+
 
 /**
  * Inspects the class files, jar files and war files inside given ear resource
@@ -135,7 +135,7 @@ public class Inspector {
                                         minfo.getCodeAttribute();
                                         CodeAttribute ca = minfo.getCodeAttribute();
                                         if(null!=ca) for (CodeIterator ci = ca.iterator(); ci.hasNext(); ) {
-                                            int index = 0;
+                                            int index;
                                             try {
                                                 index = ci.next();
                                             } catch (BadBytecode badBytecode) {
@@ -191,8 +191,7 @@ public class Inspector {
     /**
      * Returns number of exceptions!
      *
-     * @param artifacts
-     * @return
+     * @param artifacts Artifacts to be inspected.
      * @throws IOException
      */
     public void inspectArtifacts(Set<Artifact> artifacts) throws IOException {

@@ -104,7 +104,7 @@ public class RestrictionConfigurationFactoryTest {
 class RCTestHelper {
     static Log logger;
 
-    final static WildcardMatcher t(String pattern) {
+    static WildcardMatcher t(String pattern) {
         return new WildcardMatcher(pattern, logger);
     }
 }
