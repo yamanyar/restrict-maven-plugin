@@ -5,7 +5,7 @@
 
     <groupId>com.yamanyar</groupId>
     <artifactId>restrict-maven-plugin</artifactId>
-    <version>0.7-SNAPSHOT</version>
+    <version>0.7</version>
     <packaging>maven-plugin</packaging>
 
     <name>restrict-maven-plugin Maven Plugin</name>
