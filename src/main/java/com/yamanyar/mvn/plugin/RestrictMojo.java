@@ -48,6 +48,9 @@ public class RestrictMojo
     @Parameter
     boolean continueOnError;
 
+    @Parameter
+    boolean onlyInspectFolder;
+
     @Parameter(defaultValue = "${project}")
     private org.apache.maven.project.MavenProject mavenProject;
 
@@ -94,10 +97,11 @@ public class RestrictMojo
 
             Inspector inspector = new Inspector(restrictLogger, restrictionsMap);
             try {
-                Set<Artifact> artifacts = (Set<Artifact>) mavenProject.getDependencyArtifacts();
 
-
-                inspector.inspectArtifacts(artifacts);
+                if (!onlyInspectFolder) {
+                    Set<Artifact> artifacts = (Set<Artifact>) mavenProject.getDependencyArtifacts();
+                    inspector.inspectArtifacts(artifacts);
+                }
                 inspector.inspectFolder(buildDirectory);
 
             } catch (Exception e) {

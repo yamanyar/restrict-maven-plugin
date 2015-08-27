@@ -10,7 +10,13 @@ See release notes at [here](https://github.com/yamanyar/restrict-maven-plugin/wi
 
 Please See restriction samples at [here](https://github.com/yamanyar/restrict-maven-plugin/wiki/Restriction-Samples).
 
-Current version is 0.6.
+Current version is 0.7.
+
+With 0.8 Release now you can:
+1) Use "-Drestrict.skip=true" to skip this plugin
+2) Can sey <onlyInspectFolder>true</onlyInspectFolder> just to restrict build directory (dependencies are not checked)
+
+
 
 Is there feature or a bug you noticed? Please inform [here](https://github.com/yamanyar/restrict-maven-plugin/issues).
 
@@ -22,7 +28,7 @@ Following is a sample usage from integration test, please note that restrictions
 
                 <groupId>com.yamanyar</groupId>
                 <artifactId>restrict-maven-plugin</artifactId>
-                <version>0.6</version>
+                <version>0.7</version>
 
                 <executions>
                     <execution>
@@ -36,6 +42,9 @@ Following is a sample usage from integration test, please note that restrictions
                 <configuration>
                     <!-- You can break maven build is restrictions found; or let build continue and just print logs. -->
                     <continueOnError>false</continueOnError>
+                    <!-- Allowed is 0.8:
+                    <onlyInspectFolder>false</onlyInspectFolder>
+                    -->
                     <restrictions>
                         <!-- Restrict all access from com.ya* (except from com.yamanyar.test.MyTestDef) to  java.util.regex.* and to java.io.PrintStre*.pri*ln() -->
                         <!-- To mark a restriction to method you must finish with "()". Overloading is not supported; so all the matching methods will be restricted; inform me if you ever need.-->
