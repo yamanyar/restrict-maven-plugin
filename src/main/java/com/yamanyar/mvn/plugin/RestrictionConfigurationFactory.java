@@ -29,7 +29,7 @@ public class RestrictionConfigurationFactory {
      * @param log logger
      * @return Returns restriction configs
      */
-    public static Map<WildcardMatcher, Set<WildcardMatcher>> produceConfiguration(String[] restrictions, Log log) {
+    public static Map<WildcardMatcher, Set<WildcardMatcher>> produceConfiguration(String[] restrictions, Log log, boolean  printDebugs) {
         Map<WildcardMatcher, Set<WildcardMatcher>> restrictionsMap;
         restrictionsMap = new HashMap<WildcardMatcher, Set<WildcardMatcher>>();
 
@@ -54,19 +54,19 @@ public class RestrictionConfigurationFactory {
                 if ("!".equals(toString)) {
                     throw new IllegalArgumentException("Please check restriction configuration: (! must be followed by a pattern like !com.*)" + restriction);
                 } else if (toString.startsWith("!")) {
-                    toExceptions.add(new WildcardMatcher(toString.substring(1), log));
+                    toExceptions.add(new WildcardMatcher(toString.substring(1), log,printDebugs));
                 } else {
                     for (String from : fromList) {
                         String fromString = from.trim();
                         if ("!".equals(fromString)) {
                             throw new IllegalArgumentException("Please check restriction configuration: (! must be followed by a pattern like !com.*)" + restriction);
                         } else if (fromString.startsWith("!")) {
-                            fromExceptions.add(new WildcardMatcher(fromString.substring(1), log));
+                            fromExceptions.add(new WildcardMatcher(fromString.substring(1), log,printDebugs));
                         } else {
-                            WildcardMatcher fromMatcher = new WildcardMatcher(fromString, log);
+                            WildcardMatcher fromMatcher = new WildcardMatcher(fromString, log,printDebugs);
                             fromMatcher.setExceptions(fromExceptions);
                             Set<WildcardMatcher> toMatcherSet = getToMatcherSet(restrictionsMap, fromMatcher);
-                            WildcardMatcher toMatcher = new WildcardMatcher(toString, log);
+                            WildcardMatcher toMatcher = new WildcardMatcher(toString, log,printDebugs);
                             toMatcher.setExceptions(toExceptions);
                             toMatcherSet.add(toMatcher);
                         }

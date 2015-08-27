@@ -51,6 +51,10 @@ public class RestrictMojo
     @Parameter
     boolean onlyInspectFolder;
 
+
+    @Parameter
+    boolean printDebugs=true;
+
     @Parameter(defaultValue = "${project}")
     private org.apache.maven.project.MavenProject mavenProject;
 
@@ -91,11 +95,11 @@ public class RestrictMojo
                 restrictLogger.warn("RestrictMojo is set as a plugin but it is not configured properly!");
                 return;
             } else {
-                restrictionsMap = RestrictionConfigurationFactory.produceConfiguration(restrictions, restrictLogger);
+                restrictionsMap = RestrictionConfigurationFactory.produceConfiguration(restrictions, restrictLogger,printDebugs);
             }
 
 
-            Inspector inspector = new Inspector(restrictLogger, restrictionsMap);
+            Inspector inspector = new Inspector(restrictLogger, restrictionsMap,printDebugs);
             try {
 
                 if (!onlyInspectFolder) {

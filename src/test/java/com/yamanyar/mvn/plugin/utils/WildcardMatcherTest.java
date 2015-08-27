@@ -22,29 +22,29 @@ public class WildcardMatcherTest {
         EasyMock.replay(log);
 
 
-        WildcardMatcher wildcardMatcher = new WildcardMatcher("*and*the*", log);
+        WildcardMatcher wildcardMatcher = new WildcardMatcher("*and*the*", log,false);
         assertTrue(wildcardMatcher.match("Tree and the river"));
         assertFalse(wildcardMatcher.match("Tree an the river"));
         assertTrue(wildcardMatcher.match("and the"));
         assertTrue(wildcardMatcher.match("andthe"));
         assertFalse(wildcardMatcher.match("Tree and he river"));
 
-        wildcardMatcher = new WildcardMatcher("*.yamanyar*", log);
+        wildcardMatcher = new WildcardMatcher("*.yamanyar*", log,false);
         assertTrue(wildcardMatcher.match("com.yamanyar.esb.Main"));
 
 
-        wildcardMatcher = new WildcardMatcher("*.yamanyar.Abc.Test()", log);
+        wildcardMatcher = new WildcardMatcher("*.yamanyar.Abc.Test()", log,false);
         assertTrue(wildcardMatcher.match("com.yamanyar.Abc"));
         assertTrue(wildcardMatcher.matchMethod("com.yamanyar.Abc.Test()"));
         assertFalse(wildcardMatcher.match("com.yamanyar.Abcd"));
 
-        wildcardMatcher = new WildcardMatcher("*.yamanyar.Ab*.Test()", log);
+        wildcardMatcher = new WildcardMatcher("*.yamanyar.Ab*.Test()", log,false);
         assertTrue(wildcardMatcher.match("com.yamanyar.Abc"));
         assertTrue(wildcardMatcher.match("com.yamanyar.Abcd"));
         assertTrue(wildcardMatcher.matchMethod("com.yamanyar.Abcd.Test()"));
         assertFalse(wildcardMatcher.matchMethod("com.yamanyar.Abcd.UTest()"));
 
-        wildcardMatcher = new WildcardMatcher("*.yamanyar.Ab*.Te*t()", log);
+        wildcardMatcher = new WildcardMatcher("*.yamanyar.Ab*.Te*t()", log,false);
         assertTrue(wildcardMatcher.match("com.yamanyar.Abc"));
         assertTrue(wildcardMatcher.match("com.yamanyar.Abcd"));
         assertTrue(wildcardMatcher.matchMethod("com.yamanyar.Abcd.Test()"));

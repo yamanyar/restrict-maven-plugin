@@ -34,7 +34,7 @@ public class RestrictionConfigurationFactoryTest {
         EasyMock.expectLastCall().anyTimes();
         EasyMock.replay(mockLog);
 
-        Map<WildcardMatcher, Set<WildcardMatcher>> rMap = RestrictionConfigurationFactory.produceConfiguration(testArray, mockLog);
+        Map<WildcardMatcher, Set<WildcardMatcher>> rMap = RestrictionConfigurationFactory.produceConfiguration(testArray, mockLog,false);
         assertTrue(rMap.size() == 6);
 
         //Check if key com.yamanyar.* has values [java.beans.AppletInitializer, java.awt.color.Red, java.awt.color.*]
@@ -105,6 +105,6 @@ class RCTestHelper {
     static Log logger;
 
     static WildcardMatcher t(String pattern) {
-        return new WildcardMatcher(pattern, logger);
+        return new WildcardMatcher(pattern, logger,false);
     }
 }

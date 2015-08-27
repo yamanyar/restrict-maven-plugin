@@ -36,10 +36,12 @@ public class Inspector {
     private final Log log;
     private final Map<WildcardMatcher, Set<WildcardMatcher>> restrictionsMap;
     private int count = 0;
+    private boolean printDebugs;
 
-    public Inspector(Log log, Map<WildcardMatcher, Set<WildcardMatcher>> restrictionsMap) {
+    public Inspector(Log log, Map<WildcardMatcher, Set<WildcardMatcher>> restrictionsMap, boolean printDebugs) {
         this.log = log;
         this.restrictionsMap = restrictionsMap;
+        this.printDebugs = printDebugs;
     }
 
     public void inspectJar(String path) throws IOException {
@@ -170,9 +172,9 @@ public class Inspector {
 
                                                 //if we found an invocation; let's check pattern matching
                                                 if (desc != null) {
-                                                    log.debug("Checking " + restrictedTarget.toString() + " against " + desc);
+                                                   if (printDebugs) log.debug("Checking " + restrictedTarget.toString() + " against " + desc);
                                                     if (restrictedTarget.matchMethod(desc)) {
-                                                        log.debug("Method signature matched: " + restrictedTarget.toString() + " against " + desc);
+                                                     if   (printDebugs) log.debug("Method signature matched: " + restrictedTarget.toString() + " against " + desc);
                                                         count++;
                                                         log.error(String.format(errorMessage, path, currentClass.getName(), desc, from.getRuleNo(), restrictedTarget.getRuleNo()));
                                                     }
@@ -200,7 +202,10 @@ public class Inspector {
      */
     public void inspectArtifacts(Set<Artifact> artifacts) throws IOException {
         for (Artifact artifact : artifacts) {
-            log.debug("Inspecting " + artifact.toString());
+
+
+            if (printDebugs) log.debug("Inspecting " + artifact.toString());
+
             String path = artifact.getFile().getPath();
             if (path.endsWith(".jar")) {
                 inspectJar(path);

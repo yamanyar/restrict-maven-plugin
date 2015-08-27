@@ -44,6 +44,7 @@ Following is a sample usage from integration test, please note that restrictions
                     <continueOnError>false</continueOnError>
                     <!-- Allowed is 0.8:
                     <onlyInspectFolder>false</onlyInspectFolder>
+                    <printDebugs>true</printDebugs>
                     -->
                     <restrictions>
                         <!-- Restrict all access from com.ya* (except from com.yamanyar.test.MyTestDef) to  java.util.regex.* and to java.io.PrintStre*.pri*ln() -->

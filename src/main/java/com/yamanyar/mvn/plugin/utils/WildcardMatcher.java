@@ -20,9 +20,10 @@ public class WildcardMatcher {
     private final Pattern methodPattern;
     private final String wildcardString;
     private final Log log;
-
-    public WildcardMatcher(String wildcardString, Log log) {
+    private final boolean printDebugs;
+    public WildcardMatcher(String wildcardString, Log log, boolean printDebugs) {
         this.log = log;
+        this.printDebugs = printDebugs;
         ruleNo = ++ruleCounter;
         if (wildcardString == null) throw new IllegalArgumentException("How can I match with null?");
         this.wildcardString = wildcardString;
@@ -60,7 +61,7 @@ public class WildcardMatcher {
         if (matchesPattern && exceptions != null) {
             for (WildcardMatcher exception : exceptions) {
                 if (exception.match(testString)) {
-                    log.debug(String.format("An exception to a restriction (%s of rule %d) matched %s.", wildcardString, ruleNo, testString));
+                    if (printDebugs) log.debug(String.format("An exception to a restriction (%s of rule %d) matched %s.", wildcardString, ruleNo, testString));
                     return false;
                 }
             }
