@@ -4,25 +4,26 @@ We use this plugin to be ensure that some restricted packages are not accessed b
 
 We generally restrict access to reflection, threads or some architectural components.
 
-You can use wildcard both in from and to targets with exception cases.
+You can use wildcard both in "from" and "to" targets, with exception cases.
 
-See release notes at [here](https://github.com/yamanyar/restrict-maven-plugin/wiki/Release-Notes).
+See release notes [here](https://github.com/yamanyar/restrict-maven-plugin/wiki/Release-Notes).
 
-Please See restriction samples at [here](https://github.com/yamanyar/restrict-maven-plugin/wiki/Restriction-Samples).
+Please see restriction samples [here](https://github.com/yamanyar/restrict-maven-plugin/wiki/Restriction-Samples).
 
 Current version is 0.8.
 
 With 0.8 Release now you can:
-1) Use "-Drestrict.skip=true" to skip this plugin
-2) Can set <onlyInspectFolder>true</onlyInspectFolder> just to restrict build directory (dependencies are not checked)
-3) Cans set <printDebugs>false</printDebugs> not to print debugs.
+ 1. Use `-Drestrict.skip=true` to skip this plugin
+ 2. Set `<onlyInspectFolder>true</onlyInspectFolder>` just to restrict build directory (dependencies are not checked)
+ 3. Set `<printDebugs>false</printDebugs>` not to print debug messages.
 
 
 
-Is there feature or a bug you noticed? Please inform [here](https://github.com/yamanyar/restrict-maven-plugin/issues).
+Is there feature or a bug you noticed? Please inform us [here](https://github.com/yamanyar/restrict-maven-plugin/issues).
 
-Following is a sample usage from integration test, please note that restrictions below are meaningless; just for testing. (Artifact is deployed to maven central repository; so you do not need to download and install it to your local.)
+Following is a sample usage from an integration test; please note that restrictions below are meaningless, just for testing. (Artifact is deployed to the Maven Central repository, so you do not need to download and install it to your local repository.)
 
+```xml
     <build>
         <plugins>
             <plugin>
@@ -64,9 +65,10 @@ Following is a sample usage from integration test, please note that restrictions
             </plugin>
         </plugins>
     </build>
+```
 
-You can check target\restrict-maven-plugin.txt file for compiled rules and the violations. Here is an excerpt from our report for the configuration above:
-
+You can check `target\restrict-maven-plugin.txt` file for compiled rules and the violations. Here is an excerpt from our report for the configuration above:
+```
 ##### Restriction Rules (begins) ######  
 [7-8] Access from * to sun.net.www.http.HttpClient will be not allowed.  
 [1-2] Access from com.ya* to java.util.regex.* will be not allowed.  
@@ -101,3 +103,4 @@ Restricted access from:(/home/kaan/codes/restrict-maven-plugin/src/it/simple-it/
 Restricted access from:(/home/kaan/codes/restrict-maven-plugin/src/it/simple-it/target/classes/com/yamanyar/test/MyTestAbc.class) com.yamanyar.test.MyTestAbc to: java.util.regex.Matcher due to rule [1-2]  
 Restricted access from:(/home/kaan/codes/restrict-maven-plugin/src/it/simple-it/target/classes/com/yamanyar/test/MyTestAbc.class) com.yamanyar.test.MyTestAbc to: java.io.PrintStream.println() due to rule [1-5]  
 Build is broken due to 23 restriction policies!  
+```
